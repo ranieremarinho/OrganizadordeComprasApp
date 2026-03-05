@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editNomeCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome da categoria"/>
+        android:hint="Nome da categoria"
+        android:autofillHints="name"
+        android:inputType="textCapSentences"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/btnSalvarCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar categoria"/>
+        android:text="Salvar categoria"
+        android:minHeight="48dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategorias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@android:layout/simple_list_item_1" />
 
 </LinearLayout>
