@@ -4,19 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/editNomeCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome da Categoria"/>
+        android:hint="Nome da categoria"/>
 
     <Button
         android:id="@+id/btnSalvarCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar Categoria"
-        android:layout_marginTop="16dp"/>
+        android:text="Salvar categoria"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
