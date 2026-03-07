@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:gravity="center"
+    android:background="#2E7D32"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editNomeCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome da categoria"
-        android:autofillHints="name"
-        android:inputType="textCapSentences"
-        android:minHeight="48dp" />
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/icone"/>
 
-    <Button
-        android:id="@+id/btnSalvarCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Salvar categoria"
-        android:minHeight="48dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerCategorias"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:text="Organizador de Compras"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@android:layout/simple_list_item_1" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

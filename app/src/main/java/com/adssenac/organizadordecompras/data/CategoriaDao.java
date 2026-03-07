@@ -24,4 +24,6 @@ public interface CategoriaDao {
 
     @Query("SELECT * FROM Categoria ORDER BY nome ASC")
     List<Categoria> listarTodas();
+    @Query("SELECT * FROM Categoria WHERE nome = :nome LIMIT 1")
+    Categoria buscarPorNome(String nome);
 }
