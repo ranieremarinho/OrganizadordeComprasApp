@@ -22,14 +22,14 @@ public class Produto {
 
     public String nome;
 
-    public int quantidade;
+    public String quantidade;
 
     public boolean comprado;
 
     @ColumnInfo(index = true)
     public int categoriaId;
 
-    public Produto(String nome, int quantidade, int categoriaId) {
+    public Produto(String nome, String quantidade, int categoriaId) {
         this.nome = nome;
         this.quantidade = quantidade;
         this.categoriaId = categoriaId;
