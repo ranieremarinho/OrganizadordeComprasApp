@@ -1,4 +1,4 @@
-### 📱 Organizador de Compras do Mês - Android
+### 📱 Organizador de Compras: Pesquisas de preços - Android
 
 Aplicativo desenvolvido para a disciplina de Análise e Desenvolvimento de Sistemas.
 
@@ -18,6 +18,7 @@ Desenvolver um aplicativo Android que permita cadastrar itens de lista de compra
 - Listagem automática dos itens de acordo com a categoria
 - Listagem automática dos itens de acordo com status de comprado ou pendente
 - Reset de itens comprados
+- Consulta de preço
 
 ***
 
@@ -48,8 +49,5 @@ O projeto foi desenvolvido utilizando a arquitetura MVVM (Model-View-ViewModel),
 
 - Adriano Basílio Júnior
 - Ana Letícia Carvalho Couras
-- Andréia Goveia da Costa
-- Erick Felipe dos Santos de Melo
 - Gabriel Alves Marques
 - Raniere Marinho de Lira
-- Thiago Dourado de Carvalho
