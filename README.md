@@ -47,7 +47,7 @@ O projeto foi desenvolvido utilizando a arquitetura MVVM (Model-View-ViewModel),
 ***
 💻 **Desenvolvedores**
 
-- Adriano Basílio Júnior
+- Adriano Bazilio Júnior
 - Ana Letícia Carvalho Couras
 - Gabriel Alves Marques
 - Raniere Marinho de Lira
