@@ -20,9 +20,6 @@ public interface ProdutoDao {
     @Update
     void atualizar(Produto produto);
 
-    @Query("UPDATE Produto SET categoriaId = :novaCategoriaId WHERE categoriaId = :categoriaAntigaId")
-    void moverProdutosParaOutraCategoria(int categoriaAntigaId, int novaCategoriaId);
-
     @Delete
     void deletar(Produto produto);
 
@@ -37,6 +34,11 @@ public interface ProdutoDao {
 
     @Query("SELECT * FROM Produto ORDER BY comprado ASC, nome ASC")
     List<Produto> listarTodos();
+
+    // usado na tela "Fazer Cotação": lista simples em ordem alfabética,
+    // sem separar por comprado/não comprado
+    @Query("SELECT * FROM Produto ORDER BY nome ASC")
+    List<Produto> listarTodosOrdemAlfabetica();
 
     @Query("SELECT * FROM Produto WHERE id = :id")
     Produto buscarPorId(int id);

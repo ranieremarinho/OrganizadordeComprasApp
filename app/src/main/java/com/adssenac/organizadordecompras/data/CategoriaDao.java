@@ -26,4 +26,9 @@ public interface CategoriaDao {
     List<Categoria> listarTodas();
     @Query("SELECT * FROM Categoria WHERE nome = :nome LIMIT 1")
     Categoria buscarPorNome(String nome);
+
+    // Usado para bloquear a exclusão de uma Categoria que ainda esteja
+    // sendo usada por algum Produto.
+    @Query("SELECT COUNT(*) FROM Produto WHERE categoriaId = :categoriaId")
+    int contarProdutosPorCategoria(int categoriaId);
 }

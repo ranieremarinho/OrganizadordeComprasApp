@@ -12,20 +12,26 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adssenac.organizadordecompras.AlterarProdutoActivity;
+import com.adssenac.organizadordecompras.CotacaoActivity;
 import com.adssenac.organizadordecompras.R;
+import com.adssenac.organizadordecompras.data.CotacaoDao;
 import com.adssenac.organizadordecompras.data.ProdutoDao;
+import com.adssenac.organizadordecompras.model.MelhorPreco;
 import com.adssenac.organizadordecompras.model.ProdutoCategoria;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategoriaAdapter.ViewHolder> {
 
     List<ProdutoCategoria> lista;
     ProdutoDao produtoDao;
+    CotacaoDao cotacaoDao;
 
-    public ProdutoCategoriaAdapter(List<ProdutoCategoria> lista, ProdutoDao produtoDao){
+    public ProdutoCategoriaAdapter(List<ProdutoCategoria> lista, ProdutoDao produtoDao, CotacaoDao cotacaoDao){
         this.lista = lista;
         this.produtoDao = produtoDao;
+        this.cotacaoDao = cotacaoDao;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -34,6 +40,7 @@ public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategor
         CheckBox checkComprado;
         TextView nome;
         TextView quantidade;
+        TextView melhorPreco;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -42,6 +49,7 @@ public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategor
             checkComprado = itemView.findViewById(R.id.checkComprado);
             nome = itemView.findViewById(R.id.textNomeProduto);
             quantidade = itemView.findViewById(R.id.textQuantidade);
+            melhorPreco = itemView.findViewById(R.id.textMelhorPrecoProduto);
         }
     }
 
@@ -61,6 +69,8 @@ public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategor
 
         holder.nome.setText(produto.nome);
         holder.quantidade.setText(produto.quantidade);
+
+        exibirMelhorPreco(holder, produto.id);
 
         holder.checkComprado.setOnCheckedChangeListener(null);
         holder.checkComprado.setChecked(produto.comprado);
@@ -109,9 +119,11 @@ public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategor
 
         holder.tituloCategoria.setText(categoriaAtual);
 
+        holder.itemView.setOnClickListener(v -> abrirCotacoes(v, produto));
+
         holder.itemView.setOnLongClickListener(v -> {
 
-            String[] opcoes = {"Alterar", "Excluir"};
+            String[] opcoes = {"Alterar", "Cotações (fornecedores)", "Excluir"};
 
             new androidx.appcompat.app.AlertDialog.Builder(v.getContext())
                     .setTitle("Escolha uma ação")
@@ -132,9 +144,12 @@ public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategor
                             intent.putExtra("produtoId", prod.id);
 
                             v.getContext().startActivity(intent);
-                        }
 
-                        if(which == 1){
+                        } else if (which == 1) {
+
+                            abrirCotacoes(v, prod);
+
+                        } else if(which == 2){
 
                             com.adssenac.organizadordecompras.model.Produto p =
                                     new com.adssenac.organizadordecompras.model.Produto(
@@ -158,6 +173,28 @@ public class ProdutoCategoriaAdapter extends RecyclerView.Adapter<ProdutoCategor
 
             return true;
         });
+    }
+
+    private void abrirCotacoes(View v, ProdutoCategoria produto) {
+
+        Intent intent = new Intent(v.getContext(), CotacaoActivity.class);
+        intent.putExtra("produtoId", produto.id);
+        intent.putExtra("produtoNome", produto.nome);
+        v.getContext().startActivity(intent);
+    }
+
+    private void exibirMelhorPreco(ViewHolder holder, int produtoId) {
+
+        MelhorPreco melhor = cotacaoDao.buscarMelhorPreco(produtoId);
+
+        if (melhor != null) {
+            holder.melhorPreco.setVisibility(View.VISIBLE);
+            holder.melhorPreco.setText(String.format(Locale.getDefault(),
+                    "Melhor preço: R$ %.2f (%s)", melhor.preco, melhor.fornecedorNome));
+        } else {
+            holder.melhorPreco.setVisibility(View.VISIBLE);
+            holder.melhorPreco.setText("Sem cotações — toque para cotar");
+        }
     }
 
     @Override

@@ -5,14 +5,15 @@ import androidx.room.PrimaryKey;
 import androidx.room.ForeignKey;
 import androidx.room.ColumnInfo;
 
-import static androidx.room.ForeignKey.CASCADE;
-
+// OBS: onDelete NÃO é CASCADE de propósito. Uma Categoria não pode mais
+// ser excluída enquanto existir Produto vinculado a ela (essa checagem é
+// feita na aplicação, em CategoriaAdapter, antes de chamar o delete).
 @Entity(
         foreignKeys = @ForeignKey(
                 entity = Categoria.class,
                 parentColumns = "id",
                 childColumns = "categoriaId",
-                onDelete = CASCADE
+                onDelete = ForeignKey.NO_ACTION
         )
 )
 public class Produto {

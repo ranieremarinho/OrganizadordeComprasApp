@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".CadastroFornecedorActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fornecedores"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#444444"
+        android:layout_marginTop="24dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/editNomeFornecedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome do fornecedor"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/editCodigoFornecedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código do fornecedor"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/botaoSalvarFornecedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salvar fornecedor"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:text="Fornecedores cadastrados:"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFornecedores"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_fornecedor" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="28dp"/>
+
+</LinearLayout>

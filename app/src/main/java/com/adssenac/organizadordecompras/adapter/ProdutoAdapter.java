@@ -8,36 +8,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adssenac.organizadordecompras.AlterarProdutoActivity;
+import com.adssenac.organizadordecompras.CotacaoActivity;
 import com.adssenac.organizadordecompras.R;
+import com.adssenac.organizadordecompras.data.CotacaoDao;
 import com.adssenac.organizadordecompras.data.ProdutoDao;
+import com.adssenac.organizadordecompras.model.MelhorPreco;
 import com.adssenac.organizadordecompras.model.Produto;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHolder> {
 
     List<Produto> lista;
     ProdutoDao produtoDao;
+    CotacaoDao cotacaoDao;
 
-    public ProdutoAdapter(List<Produto> lista, ProdutoDao produtoDao) {
+    public ProdutoAdapter(List<Produto> lista, ProdutoDao produtoDao, CotacaoDao cotacaoDao) {
         this.lista = lista;
         this.produtoDao = produtoDao;
+        this.cotacaoDao = cotacaoDao;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox checkComprado;
         TextView nome;
         TextView quantidade;
+        TextView melhorPreco;
 
         public ViewHolder(View itemView) {
             super(itemView);
             checkComprado = itemView.findViewById(R.id.checkComprado);
             nome = itemView.findViewById(R.id.textNomeProduto);
             quantidade = itemView.findViewById(R.id.textQuantidade);
+            melhorPreco = itemView.findViewById(R.id.textMelhorPrecoProduto);
         }
     }
 
@@ -66,6 +73,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
             holder.nome.setTextColor(Color.BLACK);
         }
 
+        exibirMelhorPreco(holder, produto.id);
+
         // evita bug de reciclagem do RecyclerView
         holder.checkComprado.setOnCheckedChangeListener(null);
 
@@ -86,13 +95,20 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
         });
 
+        holder.itemView.setOnClickListener(v -> abrirCotacoes(v, produto));
+
         holder.itemView.setOnLongClickListener(v -> {
 
-            String[] opcoes = {"Alterar", "Excluir"};
+            String[] opcoes = {"Alterar", "Cotações (fornecedores)", "Excluir"};
 
             new androidx.appcompat.app.AlertDialog.Builder(v.getContext())
                     .setTitle("Escolha uma ação")
                     .setItems(opcoes, (dialog, which) -> {
+
+                        int pos = holder.getAdapterPosition();
+                        if (pos == RecyclerView.NO_POSITION) return;
+
+                        Produto p = lista.get(pos);
 
                         if(which == 0){
 
@@ -102,16 +118,19 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                                     AlterarProdutoActivity.class
                             );
 
-                            intent.putExtra("produtoId", produto.id);
+                            intent.putExtra("produtoId", p.id);
                             v.getContext().startActivity(intent);
 
-                        }else if(which == 1){
+                        } else if (which == 1) {
+
+                            abrirCotacoes(v, p);
+
+                        } else if(which == 2){
 
                             // EXCLUIR
-                            produtoDao.deletar(produto);
-                            lista.remove(position);
-                            notifyItemRemoved(position);
-
+                            produtoDao.deletar(p);
+                            lista.remove(pos);
+                            notifyItemRemoved(pos);
                         }
 
                     })
@@ -119,6 +138,28 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
             return true;
         });
+    }
+
+    private void abrirCotacoes(View v, Produto produto) {
+
+        Intent intent = new Intent(v.getContext(), CotacaoActivity.class);
+        intent.putExtra("produtoId", produto.id);
+        intent.putExtra("produtoNome", produto.nome);
+        v.getContext().startActivity(intent);
+    }
+
+    private void exibirMelhorPreco(ViewHolder holder, int produtoId) {
+
+        MelhorPreco melhor = cotacaoDao.buscarMelhorPreco(produtoId);
+
+        if (melhor != null) {
+            holder.melhorPreco.setVisibility(View.VISIBLE);
+            holder.melhorPreco.setText(String.format(Locale.getDefault(),
+                    "Melhor preço: R$ %.2f (%s)", melhor.preco, melhor.fornecedorNome));
+        } else {
+            holder.melhorPreco.setVisibility(View.VISIBLE);
+            holder.melhorPreco.setText("Sem cotações — toque para cotar");
+        }
     }
 
     @Override

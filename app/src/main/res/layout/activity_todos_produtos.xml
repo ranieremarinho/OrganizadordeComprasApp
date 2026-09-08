@@ -48,6 +48,22 @@
         android:minHeight="48dp" />
 
     <Button
+        android:id="@+id/botaoGerenciarFornecedores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar/Gerenciar fornecedores"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/botaoFazerCotacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fazer Cotação"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp" />
+
+    <Button
         android:id="@+id/botaoZerarQuantidades"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

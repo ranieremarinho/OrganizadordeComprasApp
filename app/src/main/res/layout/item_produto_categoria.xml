@@ -17,30 +17,46 @@
         android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <CheckBox
-            android:id="@+id/checkComprado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkComprado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/textNomeProduto"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Produto"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/textQuantidade"
+                android:text="1"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textNomeProduto"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="Produto"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/textQuantidade"
-            android:text="1"
-            android:textSize="16sp"
+            android:id="@+id/textMelhorPrecoProduto"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:textSize="13sp"
+            android:textColor="#2E7D32"
+            android:text="Melhor preço: R$ 0,00"/>
 
     </LinearLayout>
 

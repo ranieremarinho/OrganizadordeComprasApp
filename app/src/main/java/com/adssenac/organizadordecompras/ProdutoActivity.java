@@ -3,7 +3,6 @@ package com.adssenac.organizadordecompras;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -57,7 +56,7 @@ public class ProdutoActivity extends AppCompatActivity {
 
         listaProdutos = db.produtoDao().listarPorCategoria(categoriaId);
 
-        adapter = new ProdutoAdapter(listaProdutos, db.produtoDao());
+        adapter = new ProdutoAdapter(listaProdutos, db.produtoDao(), db.cotacaoDao());
         recyclerProdutos.setAdapter(adapter);
 
         botaoLimparComprados.setOnClickListener(v -> limparComprados());

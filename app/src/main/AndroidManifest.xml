@@ -20,6 +20,18 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
+            android:name=".CadastroFornecedorActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".CotacaoActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".FazerCotacaoActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".CadastroProdutoActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
