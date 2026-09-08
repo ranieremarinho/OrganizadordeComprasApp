@@ -18,7 +18,7 @@ Desenvolver um aplicativo Android que permita cadastrar itens de lista de compra
 - Listagem automática dos itens de acordo com a categoria
 - Listagem automática dos itens de acordo com status de comprado ou pendente
 - Reset de itens comprados
-- Consulta de preço
+- Cotações de preços
 
 ***
 
