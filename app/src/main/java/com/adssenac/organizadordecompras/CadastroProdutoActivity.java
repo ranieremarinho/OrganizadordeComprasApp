@@ -5,15 +5,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.adssenac.organizadordecompras.adapter.CategoriaAdapter;
 import com.adssenac.organizadordecompras.adapter.CategoriaSelecaoAdapter;
 import com.adssenac.organizadordecompras.data.AppDatabase;
 import com.adssenac.organizadordecompras.model.Categoria;

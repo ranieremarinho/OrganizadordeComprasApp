@@ -2,7 +2,6 @@ package com.adssenac.organizadordecompras;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +24,8 @@ public class TodosProdutosActivity extends AppCompatActivity {
     List<Produto> lista;
     Button botaoCadastrarProduto;
     Button btnSalvarCategoria;
+    Button botaoGerenciarFornecedores;
+    Button botaoFazerCotacao;
     Button botaoZerarQuantidades;
     Button botaoLimparComprados;
     AppDatabase db;
@@ -42,6 +43,8 @@ public class TodosProdutosActivity extends AppCompatActivity {
         recycler = findViewById(R.id.recyclerTodosProdutos);
         botaoCadastrarProduto = findViewById(R.id.botaoCadastrarProduto);
         btnSalvarCategoria = findViewById(R.id.btnSalvarCategoria);
+        botaoGerenciarFornecedores = findViewById(R.id.botaoGerenciarFornecedores);
+        botaoFazerCotacao = findViewById(R.id.botaoFazerCotacao);
         botaoZerarQuantidades = findViewById(R.id.botaoZerarQuantidades);
         botaoLimparComprados = findViewById(R.id.botaoLimparComprados);
 
@@ -53,7 +56,7 @@ public class TodosProdutosActivity extends AppCompatActivity {
 
         lista = db.produtoDao().listarTodos();
 
-        adapter = new ProdutoAdapter(lista, db.produtoDao());
+        adapter = new ProdutoAdapter(lista, db.produtoDao(), db.cotacaoDao());
 
         recycler.setAdapter(adapter);
         botaoCadastrarProduto.setOnClickListener(v -> {
@@ -71,6 +74,26 @@ public class TodosProdutosActivity extends AppCompatActivity {
             Intent intent = new Intent(
                     TodosProdutosActivity.this,
                     CadastroCategoriaActivity.class
+            );
+
+            startActivity(intent);
+
+        });
+        botaoGerenciarFornecedores.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    TodosProdutosActivity.this,
+                    CadastroFornecedorActivity.class
+            );
+
+            startActivity(intent);
+
+        });
+        botaoFazerCotacao.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    TodosProdutosActivity.this,
+                    FazerCotacaoActivity.class
             );
 
             startActivity(intent);
@@ -178,7 +201,7 @@ public class TodosProdutosActivity extends AppCompatActivity {
 
         lista = db.produtoDao().listarTodos();
 
-        adapter = new ProdutoAdapter(lista, db.produtoDao());
+        adapter = new ProdutoAdapter(lista, db.produtoDao(), db.cotacaoDao());
 
         recycler.setAdapter(adapter);
     }
@@ -186,7 +209,7 @@ public class TodosProdutosActivity extends AppCompatActivity {
 
         List<ProdutoCategoria> lista = db.produtoDao().listarOrdenadoPorCategoria();
 
-        adapter = new ProdutoCategoriaAdapter(lista, db.produtoDao());
+        adapter = new ProdutoCategoriaAdapter(lista, db.produtoDao(), db.cotacaoDao());
 
         recycler.setAdapter(adapter);
     }

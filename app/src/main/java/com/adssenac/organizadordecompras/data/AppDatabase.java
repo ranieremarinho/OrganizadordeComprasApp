@@ -8,14 +8,18 @@ import androidx.room.RoomDatabase;
 
 import com.adssenac.organizadordecompras.model.Categoria;
 import com.adssenac.organizadordecompras.model.Produto;
+import com.adssenac.organizadordecompras.model.Fornecedor;
+import com.adssenac.organizadordecompras.model.Cotacao;
 
-@Database(entities = {Categoria.class, Produto.class}, version = 2)
+@Database(entities = {Categoria.class, Produto.class, Fornecedor.class, Cotacao.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
 
     public abstract CategoriaDao categoriaDao();
     public abstract ProdutoDao produtoDao();
+    public abstract FornecedorDao fornecedorDao();
+    public abstract CotacaoDao cotacaoDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
 

@@ -132,20 +132,26 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
 
                         if (which == 1) {
 
+                            // Regra: não é possível excluir a categoria se
+                            // algum produto ainda estiver usando ela.
+                            int qtdProdutos = categoriaDao.contarProdutosPorCategoria(cat.id);
+
+                            if (qtdProdutos > 0) {
+
+                                android.widget.Toast.makeText(
+                                        v.getContext(),
+                                        "Não é possível excluir: existem " + qtdProdutos +
+                                                " produto(s) usando a categoria \"" + cat.nome + "\"",
+                                        android.widget.Toast.LENGTH_LONG
+                                ).show();
+
+                                return;
+                            }
+
                             new androidx.appcompat.app.AlertDialog.Builder(v.getContext())
                                     .setTitle("Excluir categoria")
                                     .setMessage("Deseja realmente excluir a categoria \"" + cat.nome + "\"?")
                                     .setPositiveButton("Sim", (d, w) -> {
-
-                                        // buscar categoria Diversos
-                                        Categoria diversos = categoriaDao.buscarPorNome("Diversos");
-
-                                        if(diversos != null){
-
-                                            // mover produtos para Diversos
-                                            produtoDao.moverProdutosParaOutraCategoria(cat.id, diversos.id);
-
-                                        }
 
                                         categoriaDao.deletar(cat);
 
