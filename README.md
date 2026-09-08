@@ -18,7 +18,7 @@ Desenvolver um aplicativo Android que permita cadastrar itens de lista de compra
 - Listagem automática dos itens de acordo com a categoria
 - Listagem automática dos itens de acordo com status de comprado ou pendente
 - Reset de itens comprados
-- Consulta de preço
+- Cotações de preços
 
 ***
 
@@ -47,7 +47,7 @@ O projeto foi desenvolvido utilizando a arquitetura MVVM (Model-View-ViewModel),
 ***
 💻 **Desenvolvedores**
 
-- Adriano Basílio Júnior
+- Adriano Bazilio Júnior
 - Ana Letícia Carvalho Couras
 - Gabriel Alves Marques
 - Raniere Marinho de Lira
