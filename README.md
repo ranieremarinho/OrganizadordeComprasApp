@@ -6,19 +6,22 @@ Aplicativo desenvolvido para a disciplina de Análise e Desenvolvimento de Siste
 
 📌 **Objetivo**
 
-Desenvolver um aplicativo Android que permita cadastrar itens de lista de compras, classificá-los por categoria e marcá-los como comprados, listando automaticamente por tipo e itens pendentes para adquirir.
+Desenvolver um aplicativo Android que permita cadastrar itens de lista de compras, classificá-los por
+categoria e marcá-los como comprados, listando automaticamente por tipo e itens pendentes para
+adquisição, além de possibilitar a realização de cotação entre fornecedores.
 
 ***
 
 📱 **Funcionalidades**
 
-- Cadastro de item
+- Cadastro de produtos, categorias e fornecedores
 - Classificação por categoria (alimentação, farmácia, higiene, limpeza, pet, outros)
 - Marcar item como comprado
 - Listagem automática dos itens de acordo com a categoria
 - Listagem automática dos itens de acordo com status de comprado ou pendente
-- Reset de itens comprados
+- Exclusão de itens comprados
 - Cotações de preços
+- Comparação automática de preços entre fornecedores
 
 ***
 
