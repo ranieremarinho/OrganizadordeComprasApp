@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/textProdutoTituloCotacao"
-        android:text="Cotações de: Produto"
+        android:text="Cotações de: Produto:"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"

@@ -9,7 +9,7 @@
     tools:context=".FazerCotacaoActivity">
 
     <TextView
-        android:text="Fazer Cotação"
+        android:text="Realizar Cotação:"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"
